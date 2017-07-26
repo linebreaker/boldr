@@ -1,0 +1,46 @@
+{
+  "env": {
+    "boldr-development-client": {
+      "presets": [
+        [ "boldr", { "target": "browser" }]
+      ],
+      "plugins": ["react-hot-loader/babel"]
+    },
+
+    "boldr-development-server": {
+      "presets": [
+        [ "boldr", { "target": "current" }]
+      ]
+    },
+
+    "boldr-production-client": {
+      "presets": [
+        [ "boldr", { "target": "browser" }]
+      ]
+    },
+
+    "boldr-production-server": {
+      "presets": [
+        [ "boldr", { "target": "script" }]
+      ]
+    },
+
+    "development": {
+      "presets": [
+        [ "boldr", { "target": "current", "modules": "commonjs" }]
+      ]
+    },
+
+    "production": {
+      "presets": [
+        [ "boldr", { "target": "current", "modules": "commonjs" }]
+      ]
+    },
+
+    "test": {
+      "presets": [
+        [ "boldr", { "target": "test" }]
+      ]
+    }
+  }
+}

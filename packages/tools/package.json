@@ -1,0 +1,73 @@
+{
+  "name": "boldr-tools",
+  "version": "0.1.0-beta.3",
+  "description": "",
+  "bin": {
+    "btools": "bin/btools"
+  },
+  "main": "lib/btools.commonjs.js",
+  "module": "lib/btools.esmodules.js",
+  "scripts": {
+    "build": "prepublish",
+    "format": "prettier --single-quote=true --print-width=100 --jsx-bracket-same-line=false --trailing-comma=all --write \"src/**/*.js\""
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-loader": "^7.1.1",
+    "babel-preset-boldr": "0.11.1",
+    "bluebird": "^3.5.0",
+    "boldr-utils": "0.4.0-rc.2",
+    "cache-loader": "^1.0.3",
+    "case-sensitive-paths-webpack-plugin": "^2.1.1",
+    "chalk": "^2.0.1",
+    "circular-dependency-plugin": "^3.0.0",
+    "css-loader": "^0.28.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "extract-css-chunks-webpack-plugin": "^2.0.8",
+    "fast-sass-loader": "^1.2.5",
+    "file-loader": "^0.11.2",
+    "fs-extra": "^4.0.0",
+    "graphql": "^0.10.5",
+    "graphql-tag": "^2.4.2",
+    "happypack": "4.0.0-beta.1",
+    "html-webpack-plugin": "^2.29.0",
+    "loader-utils": "^1.1.0",
+    "md5": "^2.2.1",
+    "meow": "^3.7.0",
+    "node-fetch": "^1.7.1",
+    "node-noop": "^1.0.0",
+    "node-sass": "^4.5.3",
+    "ora": "^1.3.0",
+    "postcss-loader": "^2.0.6",
+    "pretty-error": "^2.1.1",
+    "react-dev-utils": "^3.0.2",
+    "source-map-support": "^0.4.15",
+    "stats-webpack-plugin": "^0.6.1",
+    "uglify-es": "^3.0.26",
+    "uglifyjs-webpack-plugin": "1.0.0-beta.2",
+    "url-loader": "^0.5.9",
+    "uuid": "^3.1.0",
+    "webpack": "^3.3.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-hot-server-middleware": "^0.1.0",
+    "webpack-subresource-integrity": "^1.0.1",
+    "whatwg-fetch": "^2.0.3",
+    "write-file-webpack-plugin": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-boldr": "^0.11.2",
+    "flow-bin": "^0.51.0",
+    "prepublish": "^1.1.0",
+    "prettier": "^1.5.3"
+  }
+}

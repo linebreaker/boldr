@@ -1,0 +1,6 @@
+
+{
+  "presets": [
+    [ "boldr", { "target": "current", "debug": false }]
+  ]
+}

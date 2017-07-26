@@ -1,0 +1,31 @@
+{
+  "name": "boldr-auth",
+  "version": "0.0.1-alpha.3",
+  "description": "",
+  "main": "lib/boldr-auth.node.commonjs.js",
+  "module": "lib/boldr-auth.node.esmodules.js",
+  "browser": "lib/boldr-auth.browser.esmodules.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf lib",
+    "format": "prettier --single-quote=true --jsx-bracket-same-line=false --trailing-comma=all --print-width=100 --write \"src/**/*.js\"",
+    "prepare": "rimraf lib && prepublish",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-preset-boldr": "0.11.0",
+    "eslint": "^4.3.0",
+    "eslint-config-boldr": "^0.11.2",
+    "jest": "^20.0.4",
+    "prepublish": "^1.1.0",
+    "prettier": "^1.5.3",
+    "rimraf": "^2.6.1"
+  }
+}
