@@ -1,6 +1,20 @@
+// @flow
 import React from 'react';
 import classnames from 'classnames';
 import { Editor } from 'slate';
+import type { ReactChildren } from '../types/react';
+
+export type Props = {
+  className?: string,
+  wrapperStyle?: Object,
+  style?: Object,
+  state: Object,
+  outerState?: Object,
+  plugins?: Array<any>,
+  onChange?: Function,
+  changeState?: Function,
+  children?: ReactChildren,
+};
 
 export default ({
   className,
@@ -13,7 +27,7 @@ export default ({
   changeState,
   children,
   ...rest
-}) => {
+}: Props) => {
   const { readOnly } = outerState;
 
   return (

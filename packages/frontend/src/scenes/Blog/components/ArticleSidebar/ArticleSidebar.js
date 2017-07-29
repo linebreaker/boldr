@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import classnames from 'classnames';
-import { StyleClasses } from '../../../../theme/styleClasses';
+import { StyleClasses } from '@boldr/ui';
 
 import Author from '../Author';
 import SidebarTags from '../SidebarTags';

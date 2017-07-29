@@ -55,7 +55,7 @@ export default ({ clientStats, outputPath }) =>
       return;
     }
     const chunkNames = flushChunkNames();
-    const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames });
+    const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames, outputPath });
     const preloadedState = reduxStore.getState();
     preloadedState.apollo = apolloClient.getInitialState();
     const styleTags = sheet.getStyleTags();

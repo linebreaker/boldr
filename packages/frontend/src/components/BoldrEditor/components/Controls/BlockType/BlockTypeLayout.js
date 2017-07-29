@@ -105,7 +105,7 @@ class BlockTypeLayout extends Component {
           title={title}
         >
           <span>
-            {currentLabel || translations['components.controls.blocktype.blocktype']}
+            {currentLabel}
           </span>
           {blocks.map(block =>
             <DropdownOption active={blockType === block.label} value={block.label} key={block.id}>

@@ -79,7 +79,7 @@ const getImageRender = config =>
       const { hovered } = this.state;
       const { isReadOnly, isImageAlignmentEnabled } = config;
       const entity = contentState.getEntity(block.getEntityAt(0));
-      const { src, alignment, height, width } = entity.getData();
+      const { src, alignment, height, width, alt } = entity.getData();
 
       return (
         <span
@@ -94,7 +94,7 @@ const getImageRender = config =>
           <span className="boldrui-editor__image-imagewrapper">
             <img
               src={src}
-              alt=""
+              alt={alt}
               style={{
                 height,
                 width,

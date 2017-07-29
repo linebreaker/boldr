@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '@boldr/ui/Icons/Icon';
-import { stopPropagation } from '../../../utils/common';
-import { getFirstIcon } from '../../../utils/toolbar';
+import { stopPropagation, getFirstIcon } from '../../../utils/common';
 import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 
@@ -168,7 +167,7 @@ class LinkLayout extends Component {
           >
             <Icon kind="unlink" color="#222" />
           </Option>}
-        {expanded && showModal ? this.renderAddLinkModal() : undefined}
+        {expanded && showModal ? this.renderAddLinkModal() : null}
       </div>
     );
   }

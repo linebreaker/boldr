@@ -40,7 +40,7 @@ log.file=./internal/flow/logs/flow.log
 
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-esproposal.decorators=ignore
+esproposal.decorators=enable
 esproposal.export_star_as=ignore
 # Set this to true and Flow will no longer complain when you use require() with something other than a string literal.
 module.ignore_non_literal_requires=true
@@ -54,4 +54,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
 suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
 
 [version]
-0.51.0
+0.51.1

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import { resolve } from 'path';
 import appRoot from 'boldr-utils/lib/node/appRoot';
 import dotenv from 'dotenv';
@@ -34,8 +35,9 @@ export function devMiddleware(server) {
       publicPath: PUBLIC_PATH,
 
       // display no info to console (only warnings and errors)
-      noInfo: true,
+      noInfo: false,
       quiet: true,
+      // prevent loading before bundle is done
       serverSideRender: true,
     }),
   );

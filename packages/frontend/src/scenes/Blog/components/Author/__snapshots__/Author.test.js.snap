@@ -4,7 +4,7 @@ exports[`<Author /> renders snapshot 1`] = `
 <div
   className="boldrui-article-sidebar__author"
 >
-  <styled.div>
+  <Author__AvatarName>
     <Avatar
       role="presentation"
       src="abcd"
@@ -32,8 +32,8 @@ exports[`<Author /> renders snapshot 1`] = `
         ]
       }
     />
-  </styled.div>
-  <styled.div>
+  </Author__AvatarName>
+  <Author__AvatarName>
     <Headline
       type="h3"
     >
@@ -44,10 +44,10 @@ exports[`<Author /> renders snapshot 1`] = `
         hey
       </Link>
     </Headline>
-  </styled.div>
-  <styled.div>
+  </Author__AvatarName>
+  <Author__BioBlock>
     bio bio
-  </styled.div>
+  </Author__BioBlock>
   <Social
     facebook={true}
     fburl="http://facebook.com"
@@ -55,7 +55,6 @@ exports[`<Author /> renders snapshot 1`] = `
     github={true}
     google={true}
     gurl="http://facebook.com"
-    iconSize="24px"
     linkedin={true}
     lurl="http://facebook.com"
     turl="http://facebook.com"

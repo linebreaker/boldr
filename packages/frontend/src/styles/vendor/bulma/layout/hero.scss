@@ -39,7 +39,6 @@
     }
   }
 
-
   @include tablet {
     display: flex;
     justify-content: center;
@@ -173,11 +172,21 @@
         $gradient-top-left: darken(saturate(adjust-hue($color, -10deg), 10%), 10%);
         $gradient-bottom-right: lighten(saturate(adjust-hue($color, 10deg), 5%), 5%);
 
-        background-image: linear-gradient(141deg, $gradient-top-left 0%, $color 71%, $gradient-bottom-right 100%);
+        background-image: linear-gradient(
+          141deg,
+          $gradient-top-left 0%,
+          $color 71%,
+          $gradient-bottom-right 100%
+        );
 
         @include mobile {
           .nav-menu {
-            background-image: linear-gradient(141deg, $gradient-top-left 0%, $color 71%, $gradient-bottom-right 100%);
+            background-image: linear-gradient(
+              141deg,
+              $gradient-top-left 0%,
+              $color 71%,
+              $gradient-bottom-right 100%
+            );
           }
         }
       }

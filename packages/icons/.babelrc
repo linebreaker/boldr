@@ -1,0 +1,22 @@
+{
+  "comments": false,
+"compact": true,
+"minified": true,
+  "presets": ["./babel-env", "react"],
+  "plugins": [
+    "transform-react-constant-elements",
+    ["transform-runtime", {
+      "helpers": false,
+      "regenerator": false,
+      "polyfill": false,
+      "useBuiltIns": true,
+      }],
+    "transform-object-rest-spread",
+    ["transform-react-remove-prop-types", {
+          "mode": "wrap",
+          "plugins": [
+            "babel-plugin-transform-flow-strip-types",
+          ]
+        }]
+  ]
+}

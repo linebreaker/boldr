@@ -2,10 +2,9 @@
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Icon from '@boldr/ui/Icons/Icon';
+import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'boldr-icons';
 import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
-import { getFirstIcon } from '../../../utils/toolbar';
 
 export type Props = {
   expanded?: boolean,
@@ -38,7 +37,7 @@ export default class TextAlignLayout extends Component {
             onClick={onChange}
             title={left.title}
           >
-            <Icon kind="align-left" color="#222" />
+            <AlignLeft color="#222" />
           </Option>}
         {options.indexOf('center') >= 0 &&
           <Option
@@ -48,7 +47,7 @@ export default class TextAlignLayout extends Component {
             onClick={onChange}
             title={center.title}
           >
-            <Icon kind="align-center" color="#222" />
+            <AlignCenter color="#222" />
           </Option>}
         {options.indexOf('right') >= 0 &&
           <Option
@@ -58,7 +57,7 @@ export default class TextAlignLayout extends Component {
             onClick={onChange}
             title={right.title}
           >
-            <Icon kind="align-right" color="#222" />
+            <AlignRight color="#222" />
           </Option>}
         {options.indexOf('justify') >= 0 &&
           <Option
@@ -68,7 +67,7 @@ export default class TextAlignLayout extends Component {
             onClick={onChange}
             title={justify.title}
           >
-            <Icon kind="justify" color="#222" />
+            <AlignJustify color="#222" />
           </Option>}
       </div>
     );

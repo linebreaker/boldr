@@ -18,25 +18,24 @@ export async function startDevServer() {
   });
 
   multiCompiler.plugin('done', stats => {
-    const rawMessages = stats.toJson({});
+    const rawMessages = stats.toJson({}, true);
     const messages = formatWebpackMessages(rawMessages);
 
-    const isSuccessful = !messages.errors.length && !messages.warnings.length;
-    if (isSuccessful) {
+    if (!messages.errors.length && !messages.warnings.length) {
       logger.end('Compiled successfully!');
     }
 
     // If errors exist, only show errors.
     if (messages.errors.length) {
       logger.error('Failed to compile.\n');
-      logger.log(messages.errors.join('\n\n'));
+      messages.errors.forEach(e => logger.error(e));
       return;
     }
 
     // Show warnings if no errors were found.
     if (messages.warnings.length) {
       logger.warn('Compiled with warnings.\n');
-      logger.log(messages.warnings.join('\n\n'));
+      messages.warnings.forEach(w => logger.warn(w));
     }
 
     if (!stats.hasErrors() && !serverIsStarted) {

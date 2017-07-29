@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 
-import { hideNotification, removeNotification } from '../../state/notifications/notifications';
+import { hideNotification, removeNotification } from 'boldr-core';
 import NotificationContainer from './NotificationContainer';
 
 jest.useFakeTimers();
@@ -20,7 +20,9 @@ describe('<NotificationContainer />', () => {
   };
   const testNotificationState = { uid: testProps.uid, isVisible: true };
   const testInitialState = {
-    notifications: [testNotificationState],
+    boldr: {
+      notifications: [testNotificationState],
+    },
   };
 
   beforeEach(() => {

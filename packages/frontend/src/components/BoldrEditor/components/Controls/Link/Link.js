@@ -1,8 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
+import { RichUtils, EditorState, Modifier } from 'draft-js';
 import { getSelectionText, getEntityRange, getSelectionEntity } from 'draftjs-utils';
 
 import LinkLayout from './LinkLayout';
@@ -17,8 +16,8 @@ export type Props = {
 class Link extends Component {
   state: Object = {
     expanded: false,
-    link: undefined,
-    selectionText: undefined,
+    link: null,
+    selectionText: null,
   };
 
   componentWillMount(): void {
@@ -43,22 +42,17 @@ class Link extends Component {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
-  props: Props;
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  doExpand: Function = (): void => {
-    this.setState({
-      expanded: true,
-    });
+  onChange = (action, title, target, targetOption) => {
+    if (action === 'link') {
+      this.addLink(title, target, targetOption);
+    } else {
+      this.removeLink();
+    }
   };
 
   getCurrentValues = () => {
@@ -79,18 +73,23 @@ class Link extends Component {
     return currentValues;
   };
 
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  };
+
   doCollapse: Function = (): void => {
     this.setState({
       expanded: false,
     });
-  };
-
-  onChange = (action, title, target, targetOption) => {
-    if (action === 'link') {
-      this.addLink(title, target, targetOption);
-    } else {
-      this.removeLink();
-    }
   };
 
   removeLink: Function = (): void => {
@@ -121,10 +120,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', {
-        url: linkTarget,
-        target: linkTargetOption,
-      })
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
@@ -152,7 +148,7 @@ class Link extends Component {
     onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
     this.doCollapse();
   };
-
+  props: Props;
   render(): Object {
     const { config } = this.props;
     const { expanded } = this.state;

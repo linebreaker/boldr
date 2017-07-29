@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 export default class FocusHandler {
   inputFocused = false;
   editorMouseDown = false;
@@ -11,7 +11,7 @@ export default class FocusHandler {
     this.inputFocused = true;
   };
 
-  isEditorBlur = (event: Event): void => {
+  isEditorBlur = (event): void => {
     if (event.target.tagName === 'INPUT' && !this.editorFocused) {
       this.inputFocused = false;
       return true;

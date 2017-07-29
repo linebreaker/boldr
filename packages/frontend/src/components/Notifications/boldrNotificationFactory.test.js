@@ -25,9 +25,13 @@ describe('boldrNotificationsFactory', () => {
   } = testProps;
   const numOfNotifications = 3;
   const testInitialState = {
-    notifications: Array(numOfNotifications)
-      .fill({ isVisible: true, height: 40, options: {} })
-      .map((notification, i) => ({ ...notification, uid: i })),
+    boldr: {
+      notifications: [
+        { isVisible: true, height: 40, uid: 1, options: {} },
+        { isVisible: true, height: 40, uid: 2, options: {} },
+        { isVisible: true, height: 40, uid: 3, options: {} },
+      ],
+    },
   };
 
   const WrappedNotification = () => <div>Notification</div>;
@@ -45,7 +49,7 @@ describe('boldrNotificationsFactory', () => {
   it('maps state to props', () => {
     const mountedComponent = mountComponent(testProps);
     expect(mountedComponent.find('Notifications').prop('notifications')).toEqual(
-      testInitialState.notifications,
+      testInitialState.boldr.notifications,
     );
   });
 

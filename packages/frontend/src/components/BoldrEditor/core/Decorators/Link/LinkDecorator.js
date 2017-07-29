@@ -1,24 +1,34 @@
 /* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Icon from '@boldr/ui/Icons/Icon';
+import type { ContentBlock, ContentState } from 'draft-js';
+import { ENTITY_TYPE } from '../../../utils/constants';
 
-function findLinkEntities(contentBlock, callback, contentState) {
+export type Props = {
+  children?: ReactChildren,
+  entityKey: string,
+  contentState: ContentState,
+};
+
+function findLinkEntities(
+  contentBlock: ContentBlock,
+  callback: EntityRangeCallback,
+  contentState: ?ContentState,
+) {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
-    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
+    if (entityKey !== null) {
+      const entity = contentState ? contentState.getEntity(entityKey) : null;
+      return entity !== null && entity.getType() === ENTITY_TYPE.LINK;
+    }
+    return false;
   }, callback);
 }
 
 function getLinkComponent(config) {
   const { showOpenOptionOnHover } = config;
   return class Link extends Component {
-    static propTypes = {
-      entityKey: PropTypes.string.isRequired,
-      children: PropTypes.any,
-      contentState: PropTypes.object,
-    };
-
+    props: Props;
     state: Object = {
       showPopOver: false,
     };

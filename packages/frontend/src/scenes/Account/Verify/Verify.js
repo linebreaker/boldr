@@ -14,16 +14,12 @@ export type Props = {
 };
 
 class Verify extends Component {
-  constructor(props: Props) {
-    super(props);
-    (this: any).handleVerify = this.handleVerify.bind(this);
-  }
   props: Props;
 
-  handleVerify(event): void {
+  handleVerify = (event: Event): void => {
     event.preventDefault();
     this.props.dispatch(verifyAccount(this.props.match.params.token));
-  }
+  };
 
   render() {
     return (

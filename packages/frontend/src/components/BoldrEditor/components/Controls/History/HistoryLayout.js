@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Icon from '@boldr/ui/Icons/Icon';
-import { getFirstIcon } from '../../../utils/toolbar';
+import { getFirstIcon } from '../../../utils/common';
 import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 

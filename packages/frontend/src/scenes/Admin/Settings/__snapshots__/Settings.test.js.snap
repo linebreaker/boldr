@@ -6,9 +6,9 @@ exports[`<Settings /> renders snapshot 1`] = `
     encodeSpecialCharacters={true}
     title="Admin: Settings"
   />
-  <styled.div>
+  <Settings__Content>
     <SettingsAside />
     <Connect(General) />
-  </styled.div>
+  </Settings__Content>
 </div>
 `;

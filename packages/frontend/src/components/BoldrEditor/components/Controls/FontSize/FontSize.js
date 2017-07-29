@@ -34,9 +34,7 @@ export default class FontSize extends Component {
       const styles = window.getComputedStyle(editorElm[0]);
       let defaultFontSize = styles.getPropertyValue('font-size');
       defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
-      this.setState({
-        defaultFontSize,
-      });
+      this.setFontSize(defaultFontSize);
     }
   }
 
@@ -54,6 +52,13 @@ export default class FontSize extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
   props: Props;
+
+  setFontSize = defaultFontSize => {
+    this.setState({
+      defaultFontSize,
+    });
+  };
+
   expandCollapse: Function = (): void => {
     this.setState({
       expanded: this.signalExpanded,

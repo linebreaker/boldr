@@ -75,7 +75,7 @@ export default class FontFamily extends Component {
 
   render(): Object {
     const { config } = this.props;
-    const { undoDisabled, redoDisabled, expanded, currentFontFamily } = this.state;
+    const { expanded, currentFontFamily } = this.state;
     const FontFamilyComponent = config.component || FontFamilyLayout;
     const fontFamily = currentFontFamily && currentFontFamily.substring(11);
     return (

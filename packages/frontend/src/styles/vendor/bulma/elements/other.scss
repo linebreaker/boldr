@@ -18,12 +18,10 @@
     }
   }
 
-
   @include widescreen {
     max-width: $widescreen - 40px;
     width: $widescreen - 40px;
   }
-
 
   @include fullhd {
     max-width: $fullhd - 40px;

@@ -24,6 +24,7 @@ class ImageLayout extends Component {
     showImageLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
+    alt: '',
   };
 
   componentWillReceiveProps(props: Object): void {
@@ -35,6 +36,7 @@ class ImageLayout extends Component {
         showImageLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
+        alt: '',
       });
     } else if (
       props.config.uploadCallback !== this.props.config.uploadCallback ||
@@ -46,41 +48,12 @@ class ImageLayout extends Component {
     }
   }
   props: Props;
-  updateValue: Function = (event: Object): void => {
+
+  onDragEnter: Function = (event: Object): void => {
+    this.stopPropagation(event);
     this.setState({
-      [`${event.target.name}`]: event.target.value,
+      dragEnter: true,
     });
-  };
-
-  toggleShowImageLoading: Function = (): void => {
-    const showImageLoading = !this.state.showImageLoading;
-    this.setState({
-      showImageLoading,
-    });
-  };
-
-  showImageURLOption: Function = (): void => {
-    this.setState({
-      uploadHighlighted: false,
-    });
-  };
-
-  showImageUploadOption: Function = (): void => {
-    this.setState({
-      uploadHighlighted: true,
-    });
-  };
-
-  addImageFromState: Function = (): void => {
-    const { imgSrc, height, width } = this.state;
-    const { onChange } = this.props;
-    onChange(imgSrc, height, width);
-  };
-
-  addImageFromSrcLink: Function = (imgSrc: string): void => {
-    const { height, width } = this.state;
-    const { onChange } = this.props;
-    onChange(imgSrc, height, width);
   };
 
   onImageDrop: Function = (event: Object): void => {
@@ -91,37 +64,51 @@ class ImageLayout extends Component {
     });
 
     // Check if property name is files or items
-    let data = event.dataTransfer.items;
-    let dataIsItems = true;
-
     // IE uses 'files' instead of 'items'
-    if (!data) {
+    let data, dataIsItems;
+    if (event.dataTransfer.items) {
+      data = event.dataTransfer.items;
+      dataIsItems = true;
+    } else {
       data = event.dataTransfer.files;
       dataIsItems = false;
     }
-
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].kind === 'string' && data[i].type.match('^text/plain')) {
-        // This item is the target node
-        continue;
-      } else if (data[i].kind === 'string' && data[i].type.match('^text/html')) {
-        // Drag data item is HTML
-        continue;
-      } else if (data[i].kind === 'string' && data[i].type.match('^text/uri-list')) {
-        // Drag data item is URI
-        continue;
-      } else if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
-        // Drag data item is an image file
+      if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
         const file = dataIsItems ? data[i].getAsFile() : data[i];
         this.uploadImage(file);
       }
     }
   };
 
-  onDragEnter: Function = (event: Object): void => {
-    this.stopPropagation(event);
+  showImageUploadOption: Function = (): void => {
     this.setState({
-      dragEnter: true,
+      uploadHighlighted: true,
+    });
+  };
+
+  addImageFromState: Function = (): void => {
+    const { imgSrc, height, width, alt } = this.state;
+    const { onChange } = this.props;
+    onChange(imgSrc, height, width, alt);
+  };
+
+  showImageURLOption: Function = (): void => {
+    this.setState({
+      uploadHighlighted: false,
+    });
+  };
+
+  toggleShowImageLoading: Function = (): void => {
+    const showImageLoading = !this.state.showImageLoading;
+    this.setState({
+      showImageLoading,
+    });
+  };
+
+  updateValue: Function = (event: Object): void => {
+    this.setState({
+      [`${event.target.name}`]: event.target.value,
     });
   };
 
@@ -136,11 +123,12 @@ class ImageLayout extends Component {
     const { uploadCallback } = this.props.config;
     uploadCallback(file)
       .then(({ data }) => {
-        this.setState({
+        this.fileUpload = false;
+        return this.setState({
           showImageLoading: false,
           dragEnter: false,
+          imgSrc: data.link,
         });
-        this.addImageFromSrcLink(data.link);
       })
       .catch(() => {
         this.setState({

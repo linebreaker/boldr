@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Route from 'react-router-dom/Route';
-import {flattenRoutes} from 'boldr-core';
+import { flattenRoutes } from 'boldr-core';
 import routes from './routes';
 
 type Props = {

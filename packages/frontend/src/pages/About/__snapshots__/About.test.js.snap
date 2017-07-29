@@ -18,6 +18,9 @@ exports[`<About /> renders snapshot 1`] = `
       >
         About
       </Headline>
+      <BoldrEditor>
+        <EditorContent />
+      </BoldrEditor>
     </createWrappedComponent(Container)>
   </createWrappedComponent(Section)>
 </div>

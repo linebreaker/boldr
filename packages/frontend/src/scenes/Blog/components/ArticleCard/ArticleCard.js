@@ -3,9 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { format } from 'date-fns';
 import classnames from 'classnames';
-import { Card, CardTitle, CardText, CardActions, Media } from '@boldr/ui';
-import Button from '@boldr/ui/Button';
-import { StyleClasses } from '../../../../theme/styleClasses';
+import { Button, Card, CardTitle, CardText, CardActions, Media, StyleClasses } from '@boldr/ui';
 import { selectArticle } from '../../state/actions';
 
 import TagBlock from '../TagBlock';

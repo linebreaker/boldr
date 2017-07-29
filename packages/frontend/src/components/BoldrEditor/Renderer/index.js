@@ -23,7 +23,7 @@ const getBlockRenderFunc = (config, customBlockRenderer) => block => {
       };
     }
   }
-  return undefined;
+  return null;
 };
 
 export default getBlockRenderFunc;

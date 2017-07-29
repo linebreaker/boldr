@@ -1,9 +1,7 @@
 /* @flow */
 import React from 'react';
 import classnames from 'classnames';
-import Divider from '@boldr/ui/Divider';
-import Paper from '@boldr/ui/Paper';
-import { StyleClasses } from '../../../../theme/styleClasses';
+import { StyleClasses, Paper, Divider } from '@boldr/ui';
 import ArticleDate from '../ArticleDate';
 
 export type Props = {

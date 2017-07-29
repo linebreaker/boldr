@@ -1314,12 +1314,12 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://npm.strues.io/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-boldr@^0.11.2:
-  version "0.11.2"
-  resolved "https://npm.strues.io/eslint-config-boldr/-/eslint-config-boldr-0.11.2.tgz#a296d7f56a18680bba7dbc41c409f617d30f7799"
+eslint-config-boldr@0.12.0:
+  version "0.12.0"
+  resolved "https://npm.strues.io/eslint-config-boldr/-/eslint-config-boldr-0.12.0.tgz#96c2d72d4b3e7e960c2e2248a337f1bb1bda2c37"
   dependencies:
     babel-eslint "^7.2.3"
-    eslint-plugin-babel "^4.1.1"
+    eslint-plugin-babel "^4.1.2"
     eslint-plugin-flowtype "^2.35.0"
     eslint-plugin-import "^2.7.0"
     eslint-plugin-jsx-a11y "6.0.2"
@@ -1341,9 +1341,9 @@ eslint-module-utils@^2.1.1:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-babel@^4.1.1:
-  version "4.1.1"
-  resolved "https://npm.strues.io/eslint-plugin-babel/-/eslint-plugin-babel-4.1.1.tgz#ef285c87039b67beb3bbd227f5b0eed4fb376b87"
+eslint-plugin-babel@^4.1.2:
+  version "4.1.2"
+  resolved "https://npm.strues.io/eslint-plugin-babel/-/eslint-plugin-babel-4.1.2.tgz#79202a0e35757dd92780919b2336f1fa2fe53c1e"
 
 eslint-plugin-flowtype@^2.35.0:
   version "2.35.0"
@@ -2079,9 +2079,9 @@ invariant@^2.2.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-ioredis@^3.1.1:
-  version "3.1.1"
-  resolved "https://npm.strues.io/ioredis/-/ioredis-3.1.1.tgz#cc2f1d3232b8c95cc153046bce168f2baa1186e8"
+ioredis@^3.1.2:
+  version "3.1.2"
+  resolved "https://npm.strues.io/ioredis/-/ioredis-3.1.2.tgz#2579e3eba6dc490f68f14c7b51346281332b467b"
   dependencies:
     bluebird "^3.3.4"
     cluster-key-slot "^1.0.6"

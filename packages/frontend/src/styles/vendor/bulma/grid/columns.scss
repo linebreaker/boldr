@@ -137,7 +137,6 @@
     }
   }
 
-
   @include tablet {
     &.is-narrow,
     &.is-narrow-tablet {
@@ -219,7 +218,6 @@
     }
   }
 
-
   @include touch {
     &.is-narrow-touch {
       flex: none;
@@ -286,7 +284,6 @@
       }
     }
   }
-
 
   @include desktop {
     &.is-narrow-desktop {
@@ -355,7 +352,6 @@
     }
   }
 
-
   @include widescreen {
     &.is-narrow-widescreen {
       flex: none;
@@ -422,7 +418,6 @@
       }
     }
   }
-
 
   @include fullhd {
     &.is-narrow-fullhd {
@@ -564,7 +559,6 @@
       display: flex;
     }
   }
-
 
   @include desktop {
     // Modifiers

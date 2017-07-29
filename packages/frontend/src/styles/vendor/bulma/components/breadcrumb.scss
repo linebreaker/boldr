@@ -39,7 +39,8 @@
     }
   }
 
-  ul, ol {
+  ul,
+  ol {
     align-items: center;
     display: flex;
     flex-grow: 1;
@@ -59,13 +60,15 @@
 
   // Alignment
   &.is-centered {
-    ol, ul {
+    ol,
+    ul {
       justify-content: center;
     }
   }
 
   &.is-right {
-    ol, ul {
+    ol,
+    ul {
       justify-content: flex-end;
     }
   }

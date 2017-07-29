@@ -11,7 +11,7 @@ type Props = {
 
 // eslint-disable-next-line
 const BlogContainer = (props: Props) => {
-  const flattenedRoutes = flattenRoutes(routes);
+  const flattenedRoutes: Array<any> = flattenRoutes(routes);
   return (
     <div>
       {flattenedRoutes.map(props => <Route key={props.path} {...props} />)}

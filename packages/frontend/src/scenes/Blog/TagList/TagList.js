@@ -22,7 +22,7 @@ const TagList = (props: Props) => {
     return <Loader />;
   }
   if (!getArticlesForTag) {
-    return <h1>No matching posts</h1>
+    return <h1>No matching posts</h1>;
   }
   return (
     <div>

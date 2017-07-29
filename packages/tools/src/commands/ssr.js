@@ -22,7 +22,7 @@ export function startRenderServer() {
   const clientStats = require(`${CLIENT_OUTPUT}/stats.json`);
   const serverRender = require(`${SERVER_OUTPUT}/main.js`).default;
 
-  server.use(serverRender({ clientStats, CLIENT_OUTPUT }));
+  server.use(serverRender({ clientStats }));
 
   server.listen(PORT, () => {
     console.log(`Rendering server running on port: ${PORT}`);

@@ -135,8 +135,7 @@ class Topbar extends Component {
     return (
       <header className={classes}>
         <div className={`${BASE_ELEMENT}__inner`}>
-  
-           <NavbarBurger onClick={this.props.onMenuClick} />
+          <NavbarBurger onClick={this.props.onMenuClick} />
           <nav className={`${BASE_ELEMENT}__links`}>
             {this._links}
           </nav>

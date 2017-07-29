@@ -35,7 +35,7 @@ export default class ModalHandler {
     });
   };
 
-  onEditorClick = () => {
+  handleEditorClick = () => {
     this.closeModals();
     if (!this.suggestionFlag && this.suggestionCallback) {
       this.suggestionCallback();

@@ -63,7 +63,9 @@ export class NotificationContainer extends Component {
 }
 
 function mapStateToProps(state, props) {
-  const { isVisible, options } = state.boldr.notifications.find(notification => notification.uid === props.uid);
+  const { isVisible, options } = state.boldr.notifications.find(
+    notification => notification.uid === props.uid,
+  );
   return {
     isVisible,
     options,

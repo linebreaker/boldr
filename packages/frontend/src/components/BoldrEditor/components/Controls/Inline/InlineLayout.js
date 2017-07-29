@@ -2,8 +2,10 @@
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import shortid from 'shortid';
+// import { Bold, Italic, Underline, Strikethrough, Superscript, Code } from 'boldr-icons';
 import Icon from '@boldr/ui/Icons/Icon';
-import { getFirstIcon } from '../../../utils/toolbar';
+import { getFirstIcon } from '../../../utils/common';
 import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 
@@ -16,6 +18,15 @@ export type Props = {
   onChange?: Function,
   currentState?: Object,
 };
+/*
+'bold',
+'italic',
+'underline',
+'strikethrough',
+'monospace',
+'superscript',
+'subscript',
+ */
 export default class InlineLayout extends Component {
   props: Props;
   renderInFlatList(): Object {
@@ -25,9 +36,9 @@ export default class InlineLayout extends Component {
         className={classNames('boldrui-editor__inline-wrapper')}
         aria-label="boldrui-editor__inline-control"
       >
-        {config.options.map((style, index) =>
+        {config.options.map(style =>
           <Option
-            key={index}
+            key={shortid.generate()}
             value={style}
             onClick={onChange}
             className={classNames(config[style].className)}
@@ -65,9 +76,9 @@ export default class InlineLayout extends Component {
         title={title}
       >
         <img src={getFirstIcon(config)} alt="" />
-        {config.options.map((style, index) =>
+        {config.options.map(style =>
           <DropdownOption
-            key={index}
+            key={shortid.generate()}
             value={style}
             className={classNames('boldrui-editor__inline-dropdownoption', config[style].className)}
             active={currentState[style] === true || (style === 'MONOSPACE' && currentState.CODE)}

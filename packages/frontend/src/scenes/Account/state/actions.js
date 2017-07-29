@@ -1,7 +1,6 @@
 /* @flow */
 import { replacePath, sendNotification, showNotification } from 'boldr-core';
 import { setToken, removeToken } from 'boldr-auth';
-import { API_PREFIX } from '../../../core';
 import * as notif from '../../../core/constants';
 
 import * as t from './actionTypes';
@@ -83,7 +82,7 @@ export const loginUserError = ({ error }) => ({
   *****************************************************************/
 
 export function logout() {
-  return (dispatch: Function): void => {
+  return dispatch => {
     removeToken();
     dispatch({
       type: t.LOGOUT,
@@ -101,7 +100,7 @@ export function logout() {
 export const checkAuth = (token: string) => {
   return (dispatch: Function) => {
     dispatch({ type: t.CHECK_AUTH_REQUEST });
-    return fetch(`http://localhost:2121${API_PREFIX}/auth/check`, {
+    return fetch(`${process.env.API_URL}${process.env.API_PREFIX}/auth/check`, {
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
@@ -141,7 +140,7 @@ export function forgotPassword(email) {
     dispatch({
       type: t.FORGOT_PASSWORD_REQUEST,
     });
-    return fetch(`http://localhost:2121${API_PREFIX}/tokens/forgot-password`, {
+    return fetch(`${process.env.API_URL}${process.env.API_PREFIX}/tokens/forgot-password`, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -187,7 +186,7 @@ export function resetPassword(password, token) {
     dispatch({
       type: t.RESET_PASSWORD_REQUEST,
     });
-    return fetch(`http://localhost:2121${API_PREFIX}/tokens/reset-password/${token}`, {
+    return fetch(`${process.env.API_URL}${process.env.API_PREFIX}/tokens/reset-password/${token}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -241,7 +240,7 @@ export function verifyAccount(token) {
     dispatch({
       type: t.VERIFY_ACCOUNT_REQUEST,
     });
-    return fetch(`http://localhost:2121${API_PREFIX}/auth/verify`, {
+    return fetch(`${process.env.API_URL}${process.env.API_PREFIX}/auth/verify`, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -254,7 +253,7 @@ export function verifyAccount(token) {
       .then(response => {
         return response.json();
       })
-      .then(res => {
+      .then(() => {
         dispatch(replacePath('/login'));
         dispatch({
           type: t.VERIFY_ACCOUNT_SUCCESS,

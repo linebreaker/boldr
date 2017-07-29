@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { Entity, AtomicBlockUtils } from 'draft-js';
+import { AtomicBlockUtils } from 'draft-js';
 import ImageLayout from './ImageLayout';
 
 export type Props = {
@@ -48,8 +48,12 @@ class Image extends Component {
     });
   };
 
-  addImage: Function = (src: string, height: string, width: string): void => {
-    const { editorState, onChange } = this.props;
+  addImage: Function = (src: string, height: string, width: string, alt: string): void => {
+    const { editorState, onChange, config } = this.props;
+    const entityData = { src, height, width };
+    if (config.alt.present) {
+      entityData.alt = alt;
+    }
     const entityKey = editorState
       .getCurrentContent()
       .createEntity('IMAGE', 'MUTABLE', { src, height, width })

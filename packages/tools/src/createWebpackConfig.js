@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 import webpack from 'webpack';
 import WriteFilePlugin from 'write-file-webpack-plugin';
 import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
-import StatsPlugin from 'stats-webpack-plugin';
+
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import SriPlugin from 'webpack-subresource-integrity';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -15,6 +15,7 @@ import { getHashDigest } from 'loader-utils';
 import appRoot from 'boldr-utils/lib/node/appRoot';
 import logger from 'boldr-utils/lib/logger';
 import dotenv from 'dotenv';
+import StatsPlugin from './plugins/StatsPlugin';
 import HappyPackPlugin from './plugins/happyPackPlugin';
 import ProgressPlugin from './plugins/ProgressPlugin';
 import WebpackDigestHash from './plugins/ChunkHash';
@@ -124,7 +125,8 @@ export default function createWebpackConfig(
     {
       useBuiltins: true,
       modules: false,
-      srcDir: 'src',
+      faSpecMode: true,
+      nodentRt: false,
       exclude: ['transform-regenerator', 'transform-async-to-generator'],
       targets: {
         uglify: !_IS_DEV_,
@@ -136,9 +138,13 @@ export default function createWebpackConfig(
     require.resolve('babel-preset-boldr/node'),
     {
       useBuiltins: true,
-      srcDir: 'src',
       modules: false,
+      faSpecMode: true,
+      nodentRt: false,
       exclude: ['transform-regenerator', 'transform-async-to-generator'],
+      targets: {
+        node: 'current',
+      },
     },
   ];
   const PROJECT_CONFIG = require(path.resolve(ROOT, 'package.json'));
@@ -151,11 +157,11 @@ export default function createWebpackConfig(
   const PREFIX = config.target.toUpperCase();
   const CACHE_LOADER_DIRECTORY = path.resolve(
     ROOT,
-    `.cache/loader-${CACHE_HASH}-${config.target}-${config.env}`,
+    `node_modules/.cache/loader-${CACHE_HASH}-${config.target}-${config.env}`,
   );
   const UFLIFY_CACHE_DIRECTORY = path.resolve(
     ROOT,
-    `.cache/uglify-${CACHE_HASH}-${config.target}-${config.env}`,
+    `node_modules/.cache/uglify-${CACHE_HASH}-${config.target}-${config.env}`,
   );
 
   const name = _IS_CLIENT_ ? 'client' : 'server';
@@ -194,7 +200,7 @@ export default function createWebpackConfig(
     },
   };
   const sassLoaderRule = {
-    loader: require.resolve('fast-sass-loader'),
+    loader: require.resolve('better-sass-loader'),
   };
   const getClientEntry = () => {
     // For development
@@ -361,15 +367,10 @@ export default function createWebpackConfig(
             path: require.resolve('babel-loader'),
             query: {
               babelrc: false,
-              compact: false,
               forceEnv: BABEL_ENV,
-              sourceMaps: true,
-              comments: false,
               cacheDirectory: _IS_DEV_,
+              compact: _IS_PROD_,
               presets: [_IS_CLIENT_ ? clientPreset : serverPreset],
-              plugins: [
-                _IS_DEV_ && _IS_CLIENT_ ? require.resolve('react-hot-loader/babel') : null,
-              ].filter(Boolean),
             },
           },
         ],
@@ -399,11 +400,9 @@ export default function createWebpackConfig(
       config.minifier === 'uglify' && _IS_PROD_ && _IS_CLIENT_
         ? new UglifyPlugin({
             uglifyOptions: UGLIFY_OPTIONS,
-            comments: false,
             parallel: {
               cache: UFLIFY_CACHE_DIRECTORY,
             },
-            sourceMaps: config.useSourceMaps,
           })
         : null,
       // "Use HashedModuleIdsPlugin to generate IDs that preserves over builds."
@@ -439,16 +438,6 @@ export default function createWebpackConfig(
             minChunks: Infinity,
           })
         : null,
-
-      _IS_PROD_ && _IS_CLIENT_
-        ? new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-
-            // With more entries, this ensures that no other module goes into the vendor chunk
-            minChunks: Infinity,
-          })
-        : null,
-
       _IS_PROD_ ? new webpack.optimize.ModuleConcatenationPlugin() : null,
 
       _IS_CLIENT_ && _IS_DEV_ ? new webpack.HotModuleReplacementPlugin() : null,

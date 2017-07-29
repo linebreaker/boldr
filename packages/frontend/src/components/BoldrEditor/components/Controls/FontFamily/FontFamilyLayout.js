@@ -1,9 +1,8 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import shortid from 'shortid';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 
 export type Props = {
@@ -35,7 +34,7 @@ class FontFamilyLayout extends Component {
   render() {
     const { defaultFontFamily } = this.state;
     const {
-      config: { icon, className, dropdownClassName, options, title },
+      config: { className, dropdownClassName, options, title },
       onChange,
       expanded,
       doCollapse,
@@ -67,8 +66,12 @@ class FontFamilyLayout extends Component {
           <span className="boldrui-editor__fontfamily-placeholder">
             {currentFontFamily || 'Font Family'}
           </span>
-          {options.map((family, index) =>
-            <DropdownOption active={currentFontFamily === family} value={family} key={index}>
+          {options.map(family =>
+            <DropdownOption
+              active={currentFontFamily === family}
+              value={family}
+              key={shortid.generate()}
+            >
               {family}
             </DropdownOption>,
           )}

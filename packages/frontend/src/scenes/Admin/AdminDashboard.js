@@ -47,7 +47,7 @@ export class AdminDashboard extends Component {
     this.props.dispatch(showHideSidebar());
   };
 
-  onExpandCollapse = () => {
+  handleExpandCollapse = () => {
     this.props.dispatch(expandCollapseSideMenu());
   };
 
@@ -63,7 +63,7 @@ export class AdminDashboard extends Component {
             location={this.props.location}
             visible={ui.visible}
             expanded={ui.expanded}
-            onExpandCollapse={this.onExpandCollapse}
+            onExpandCollapse={this.handleExpandCollapse}
             logoImg="https://boldr.io/assets/boldr-logo-white.png"
             logoLink="/"
             isPrimaryColor

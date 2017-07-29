@@ -5,7 +5,6 @@ exports[`<ArticleContent /> renders snapshot 1`] = `
   <Paper
     component="div"
     noPadding={false}
-    raiseOnHover={false}
     rounded={false}
     zDepth={2}
   >

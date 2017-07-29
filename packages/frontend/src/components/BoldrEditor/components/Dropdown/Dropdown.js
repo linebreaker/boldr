@@ -102,7 +102,7 @@ export default class Dropdown extends Component {
                 return temp;
               })}
             </ul>
-          : undefined}
+          : null}
       </div>
     );
   }

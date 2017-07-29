@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 const cloneElement = (children, props) => {
@@ -16,4 +17,6 @@ const cloneElement = (children, props) => {
   );
 };
 
-export default cloneElement;
+export default {
+  cloneElement,
+};

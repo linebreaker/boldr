@@ -1,6 +1,7 @@
 /* @flow weak*/
 /* eslint-disable max-lines, flowtype/no-types-missing-file-annotation, react/no-array-index-key */
 import React, { Component } from 'react';
+import shortid from 'shortid';
 import {
   Editor,
   EditorState,
@@ -21,8 +22,7 @@ import classNames from 'classnames';
 import { ModalHandler, FocusHandler, KeyDownHandler, SuggestionHandler } from '../../eventHandlers';
 
 import blockStyleFn from '../../utils/blockStyleFn';
-import { mergeRecursive } from '../../utils/toolbar';
-import { hasProperty, filter } from '../../utils/common';
+import { hasProperty, filter, mergeRecursive } from '../../utils/common';
 
 import * as Controls from '../../components/Controls';
 
@@ -32,6 +32,7 @@ import getHashtagDecorator from '../Decorators/HashTag';
 
 import getBlockRenderFunc from '../../Renderer';
 import defaultToolbar from '../../config/defaultToolbar';
+import { EDITOR_PROPS } from './constants';
 
 export type Props = {
   onChange: ?Function,
@@ -41,15 +42,14 @@ export type Props = {
   contentState: ?Object,
   editorState: ?Object,
   defaultEditorState: ?Object,
-  toolbarOnFocus: ?boolean,
-  spellCheck: ?boolean,
-  stripPastedStyles: ?boolean,
+  toolbarOnFocus?: boolean,
+  spellCheck?: boolean,
   toolbar: ?Object,
   toolbarCustomButtons: ?Array<any>,
-  toolbarClassName: ?string,
-  toolbarHidden: ?boolean,
-  editorClassName: ?string,
-  wrapperClassName: ?string,
+  toolbarClassName?: string,
+  toolbarHidden?: boolean,
+  editorClassName?: string,
+  wrapperClassName?: string,
   toolbarStyle: ?Object,
   editorStyle: ?Object,
   wrapperStyle: ?Object,
@@ -59,18 +59,10 @@ export type Props = {
   onTab: ?Function,
   mention: ?Object,
   hashtag: ?Object,
-  textAlignment: ?string,
-  readOnly: ?boolean,
-  tabIndex: ?number,
-  placeholder: ?string,
-  ariaLabel: ?string,
-  ariaOwneeID: ?string,
-  ariaActiveDescendantID: ?string,
-  ariaAutoComplete: ?string,
-  ariaDescribedBy: ?string,
-  ariaExpanded: ?string,
-  ariaHasPopup: ?string,
-  wrapperId: ?string,
+  readOnly?: boolean,
+  placeholder?: string,
+  ariaLabel?: string,
+  wrapperId?: string,
   customBlockRenderFunc: ?Function,
   customDecorators: ?Array<any>,
 };
@@ -80,7 +72,7 @@ export default class BoldrEditor extends Component {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
-    wrapperId: Math.floor(Math.random() * 10000),
+    wrapperId: shortid.generate(),
     customDecorators: [],
   };
 
@@ -88,6 +80,7 @@ export default class BoldrEditor extends Component {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
     this.state = {
+      // eslint-disable-next-line
       editorState: undefined,
       editorFocused: false,
       toolbar,
@@ -120,7 +113,6 @@ export default class BoldrEditor extends Component {
   componentDidMount(): void {
     this.modalHandler.init(this.wrapperId);
   }
-  // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
     const newState = {};
@@ -128,6 +120,7 @@ export default class BoldrEditor extends Component {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
       newState.toolbar = toolbar;
     }
+
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
         newState.editorState = EditorState.set(props.editorState, {
@@ -169,7 +162,7 @@ export default class BoldrEditor extends Component {
     });
   };
 
-  onEditorFocus: Function = (event): void => {
+  handleEditorFocus: Function = (event): void => {
     const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
@@ -200,14 +193,14 @@ export default class BoldrEditor extends Component {
     }
   };
 
-  onToolbarFocus: Function = (event): void => {
+  handleToolbarFocus: Function = (event): void => {
     const { onFocus } = this.props;
     if (onFocus && this.focusHandler.isToolbarFocused()) {
       onFocus(event);
     }
   };
 
-  onWrapperBlur: Function = (event: Object) => {
+  handleWrapperBlur: Function = (event: Object) => {
     const { onBlur } = this.props;
     if (onBlur && this.focusHandler.isEditorBlur(event)) {
       onBlur(event);
@@ -223,6 +216,7 @@ export default class BoldrEditor extends Component {
       if (onEditorStateChange) {
         onEditorStateChange(editorState, this.props.wrapperId);
       }
+      // eslint-disable-next-line
       if (!hasProperty(this.props, 'editorState')) {
         this.setState({ editorState }, this.afterChange(editorState));
       } else {
@@ -321,35 +315,7 @@ export default class BoldrEditor extends Component {
   };
 
   filterEditorProps = props => {
-    return filter(props, [
-      'onChange',
-      'onEditorStateChange',
-      'onContentStateChange',
-      'initialContentState',
-      'defaultContentState',
-      'contentState',
-      'editorState',
-      'defaultEditorState',
-      'toolbarOnFocus',
-      'toolbar',
-      'toolbarCustomButtons',
-      'toolbarClassName',
-      'editorClassName',
-      'toolbarHidden',
-      'wrapperClassName',
-      'toolbarStyle',
-      'editorStyle',
-      'wrapperStyle',
-      'uploadCallback',
-      'onFocus',
-      'onBlur',
-      'onTab',
-      'mention',
-      'hashtag',
-      'ariaLabel',
-      'customBlockRenderFunc',
-      'customDecorators',
-    ]);
+    return filter(props, EDITOR_PROPS);
   };
 
   changeEditorState = contentState => {
@@ -396,6 +362,14 @@ export default class BoldrEditor extends Component {
     }
   };
 
+  handleMouseDown: Function = (event: Object) => {
+    if (event.target.tagName === 'INPUT') {
+      this.focusHandler.onInputMouseDown();
+    } else {
+      event.preventDefault();
+    }
+  };
+
   render() {
     const { editorState, editorFocused, toolbar } = this.state;
     const {
@@ -410,7 +384,6 @@ export default class BoldrEditor extends Component {
       wrapperStyle,
       uploadCallback,
       ariaLabel,
-      ...props
     } = this.props;
 
     const controlProps = {
@@ -424,9 +397,8 @@ export default class BoldrEditor extends Component {
         id={this.wrapperId}
         className={classNames('boldrui-editor-wrapper', wrapperClassName)}
         style={wrapperStyle}
-        onKeyDown={this.modalHandler.onEditorClick}
-        onClick={this.modalHandler.onEditorClick}
-        onBlur={this.onWrapperBlur}
+        onClick={this.modalHandler.handleEditorClick}
+        onBlur={this.handleWrapperBlur}
         aria-label="boldrui-editor-wrapper"
       >
         {!toolbarHidden &&
@@ -437,19 +409,19 @@ export default class BoldrEditor extends Component {
             onMouseDown={this.preventDefault}
             aria-label="boldrui-editor-toolbar"
             aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-            onFocus={this.onToolbarFocus}
+            onFocus={this.handleToolbarFocus}
           >
-            {toolbar.options.map((opt, index) => {
+            {toolbar.options.map(opt => {
               const Control = Controls[opt];
               const config = toolbar[opt];
               if (opt === 'image' && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
-              return <Control key={index} {...controlProps} config={config} />;
+              return <Control key={shortid.generate()} {...controlProps} config={config} />;
             })}
             {toolbarCustomButtons &&
-              toolbarCustomButtons.map((button, index) =>
-                React.cloneElement(button, { key: index, ...controlProps }),
+              toolbarCustomButtons.map(button =>
+                React.cloneElement(button, { key: shortid.generate(), ...controlProps }),
               )}
           </div>}
         <div
@@ -457,12 +429,13 @@ export default class BoldrEditor extends Component {
           className={classNames('boldrui-editor-main', editorClassName)}
           style={editorStyle}
           onClick={this.focusEditor}
-          onFocus={this.onEditorFocus}
+          onFocus={this.handleEditorFocus}
           onBlur={this.onEditorBlur}
           onKeyDown={KeyDownHandler.onKeyDown}
           onMouseDown={this.onEditorMouseDown}
         >
           <Editor
+            spellCheck={this.props.spellCheck}
             ref={this.setEditorReference}
             onTab={this.onTab}
             onUpArrow={this.onUpDownArrow}
@@ -475,6 +448,7 @@ export default class BoldrEditor extends Component {
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'boldrui-editor'}
+            placeholder={this.props.placeholder}
             {...this.editorProps}
           />
         </div>

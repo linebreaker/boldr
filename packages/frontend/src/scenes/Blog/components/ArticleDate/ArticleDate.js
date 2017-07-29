@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react';
 import { format } from 'date-fns';
-import Icon from '@boldr/ui/Icons/Icon';
 import classnames from 'classnames';
-import { StyleClasses } from '../../../../theme/styleClasses';
+import { StyleClasses } from '@boldr/ui';
+import Icon from '@boldr/ui/Icons/Icon';
 
 export type Props = {
   created: Date,

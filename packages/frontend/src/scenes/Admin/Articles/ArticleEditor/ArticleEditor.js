@@ -1,16 +1,26 @@
 /* @flow */
 import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
 import { convertToHTML } from 'draft-convert';
+import Loader from '@boldr/ui/Loader';
+
 import { graphql } from 'react-apollo';
 import EDIT_ARTICLE_MUTATION from '../gql/editArticle.mutation.graphql';
 import EditArticleForm from './components/EditArticleForm';
 
 type Props = {
-  currentArticle: Article,
+  getArticleBySlug: Article,
   editArticle: Function,
 };
 
+const mapStateToProps = state => {
+  return {
+    currentArticle: state.admin.dashboard.article,
+  };
+};
+
+@connect(mapStateToProps)
 class ArticleEditor extends PureComponent {
   props: Props;
 
@@ -21,6 +31,7 @@ class ArticleEditor extends PureComponent {
   };
 
   render() {
+    const { getArticleBySlug, loading } = this.props.data;
     const { currentArticle } = this.props;
 
     const setPostValues = {
@@ -37,7 +48,7 @@ class ArticleEditor extends PureComponent {
     };
     return (
       <div>
-        <Helmet title={`Admin: Editing Post ${this.props.currentArticle.title}`} />
+        <Helmet title={`Admin: Editing Post ${currentArticle.title}`} />
         <EditArticleForm initialValues={setPostValues} onSubmit={this.handleSubmit} />
       </div>
     );

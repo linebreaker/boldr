@@ -1,0 +1,33 @@
+{
+  "name": "cli",
+  "version": "0.1.0-beta.5",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "boldr": "./bin/boldr.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "scripts": {
+    "build": "rm -rf ./bin && NODE_ENV=production babel src/cli.js --source-maps -o boldr.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.3.0",
+    "eslint-config-boldr": "0.12.1",
+    "fast-async": "^6.3.0",
+    "prettier": "^1.5.3"
+  },
+  "dependencies": {
+    "boldr-tools": "0.1.0-rc.6",
+    "boldr-utils": "0.4.0-rc.2",
+    "caporal": "^0.7.0",
+    "update-notifier": "^2.2.0"
+  }
+}

@@ -14,8 +14,8 @@ const TitleWrapper = styled.div`
 
 const BASE_ELEMENT = StyleClasses.ARTICLE_TITLE;
 
-const ArticleTitle = (props: { title: string, className?: string }) => {
-  const classes = cx(BASE_ELEMENT, props.className);
+const ArticleTitle = (props: { title: string }) => {
+  const classes = cx(BASE_ELEMENT);
   return (
     <TitleWrapper>
       <Headline type="h1" className={classes} lightText>

@@ -1,9 +1,5 @@
-/**
- * @module boldr-core/shared/wrapBoldrApp
- */
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import ReactHotLoader from './ReactHotLoader';
 
 /**
  * Wrap the React application inside of RHL and the ApolloProvider
@@ -16,11 +12,9 @@ export default function wrapBoldrApp(Application, apolloClient, reduxStore) {
   let Wrapped = Application;
   if (apolloClient) {
     Wrapped = (
-      <ReactHotLoader>
-        <ApolloProvider client={apolloClient} store={reduxStore}>
-          {Wrapped}
-        </ApolloProvider>
-      </ReactHotLoader>
+      <ApolloProvider client={apolloClient} store={reduxStore}>
+        {Wrapped}
+      </ApolloProvider>
     );
   }
 

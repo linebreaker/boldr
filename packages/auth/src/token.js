@@ -24,7 +24,7 @@ export const parseJWT = token => {
     // If the token is expired, remove it.
     // this forces the user to login again.
     if (expiredToken === true) {
-      Storage.remove('jwt');
+      Storage.remove('bjwt');
       return null;
     }
     return {
@@ -46,11 +46,11 @@ function isTokenExpired(exp) {
 }
 
 export const setToken = token => {
-  return Storage.set('jwt', token);
+  return Storage.set('bjwt', token);
 };
 
 export const getToken = (asJSON = false) => {
-  const token = Storage.get('jwt');
+  const token = Storage.get('bjwt');
   if (asJSON) {
     return parseJWT(token);
   }
@@ -58,5 +58,5 @@ export const getToken = (asJSON = false) => {
 };
 
 export const removeToken = () => {
-  Storage.remove('jwt');
+  Storage.remove('bjwt');
 };

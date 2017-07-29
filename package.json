@@ -13,7 +13,7 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "^4.3.0",
-    "eslint-config-boldr": "^0.11.2",
+    "eslint-config-boldr": "0.12.1",
     "flow-bin": "^0.50.0",
     "prettier": "^1.5.3"
   }

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import classnames from 'classnames';
-import { StyleClasses } from '../../../../theme/styleClasses';
+import { StyleClasses } from '@boldr/ui';
 
 const BASE_ELEMENT = StyleClasses.ARTICLE_IMAGE_WRAP;
 const BASE_ELEMENT2 = StyleClasses.ARTICLE_IMAGE;
