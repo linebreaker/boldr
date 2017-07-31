@@ -257,6 +257,7 @@ export { default as Heading2 } from './Heading2';
 export { default as Heading3 } from './Heading3';
 export { default as Heading } from './Heading';
 export { default as Indent } from './Indent';
+export { default as Italic } from './Italic';
 export { default as ListAlt } from './ListAlt';
 export { default as ListOl } from './ListOl';
 export { default as ListUl } from './ListUl';

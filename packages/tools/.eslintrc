@@ -1,3 +1,7 @@
 {
-  "extends": ["boldr", "boldr/import", "boldr/promise"]
+  "extends": ["boldr", "boldr/import", "boldr/promise"],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "complexity": 0
+    }
 }

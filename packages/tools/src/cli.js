@@ -35,12 +35,10 @@ const command = meow(
 );
 
 const appPkg = require(`${appRoot.get()}/package.json`);
-const appInfo = ` running on ${appPkg.name}-${appPkg.version}`;
 
-const selectedTasks = command.input;
-const flags = command.flags;
+const { selectedTasks, flags } = command;
 
-logger.info(`BOLDR ${`v${pkg.version}`}`) + appInfo;
+logger.info(`BOLDR ${`v${pkg.version} running on ${appPkg.name}-${appPkg.version}`}`);
 
 // List of tasks we have available
 const availableTasks = [

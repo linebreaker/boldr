@@ -21,7 +21,6 @@ export type Props = {
 const SidebarNavTitle = (props: Props) => {
   return (
     <div className={classnames(`${BASE_ELEMENT}-title`)} onClick={props.onExpandCollapse}>
-      {/* if theres an icon we're going to render it */}
       {props.icon
         ? <Icon
             color="#f1f1f1"
@@ -31,7 +30,6 @@ const SidebarNavTitle = (props: Props) => {
           />
         : null}
       {props.label}
-      {/* if theres a chevron we're going to render it */}
       <Chevron
         expanded={props.expanded || props.active}
         className={classnames(`${PARENT_ELEMENT}-chevron`)}

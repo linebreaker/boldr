@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'boldr-icons';
+import Icon from '@boldr/ui/Icons/Icon';
 import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 
@@ -85,56 +86,56 @@ export default class TextAlignLayout extends Component {
     } = this.props;
     const { options, left, center, right, justify, className, dropdownClassName, title } = config;
     return (
-      <Dropdown
-        className={classNames('boldrui-editor__text-align-dropdown', className)}
-        optionWrapperClassName={classNames(dropdownClassName)}
-        onChange={onChange}
-        expanded={expanded}
-        doExpand={doExpand}
-        doCollapse={doCollapse}
-        onExpandEvent={onExpandEvent}
-        aria-label="rdw-textalign-control"
-        title={title}
-      >
-        <Icon kind="align-left" color="#222" />
-        {options.indexOf('left') >= 0 &&
-          <DropdownOption
-            value="left"
-            active={textAlignment === 'left'}
-            className={classNames('boldrui-editor__text-align-dropdownOption', left.className)}
-            title={left.title}
+          <Dropdown
+            className={classNames('boldr-editor__text-align-dropdown', className)}
+            optionWrapperClassName={classNames(dropdownClassName)}
+            onChange={onChange}
+            expanded={expanded}
+            doExpand={doExpand}
+            doCollapse={doCollapse}
+            onExpandEvent={onExpandEvent}
+            aria-label="rdw-textalign-control"
+            title={title}
           >
             <Icon kind="align-left" color="#222" />
-          </DropdownOption>}
-        {options.indexOf('center') >= 0 &&
-          <DropdownOption
-            value="center"
-            active={textAlignment === 'center'}
-            className={classNames('boldrui-editor__text-align-dropdownOption', center.className)}
-            title={center.title}
-          >
-            <Icon kind="align-center" color="#222" />
-          </DropdownOption>}
-        {options.indexOf('right') >= 0 &&
-          <DropdownOption
-            value="right"
-            active={textAlignment === 'right'}
-            className={classNames('boldrui-editor__text-align-dropdownOption', right.className)}
-            title={right.title}
-          >
-            <Icon kind="align-right" color="#222" />
-          </DropdownOption>}
-        {options.indexOf('justify') >= 0 &&
-          <DropdownOption
-            value="justify"
-            active={textAlignment === 'justify'}
-            className={classNames('boldrui-editor__text-align-dropdownOption', justify.className)}
-            title={justify.title}
-          >
-            <Icon kind="justify" color="#222" />
-          </DropdownOption>}
-      </Dropdown>
-    );
+            {options.indexOf('left') >= 0 &&
+              <DropdownOption
+                value="left"
+                active={textAlignment === 'left'}
+                className={classNames('boldr-editor__text-align-dropdownOption', left.className)}
+                title={left.title}
+              >
+                <Icon kind="align-left" color="#222" />
+              </DropdownOption>}
+            {options.indexOf('center') >= 0 &&
+              <DropdownOption
+                value="center"
+                active={textAlignment === 'center'}
+                className={classNames('boldr-editor__text-align-dropdownOption', center.className)}
+                title={center.title}
+              >
+                <Icon kind="align-center" color="#222" />
+              </DropdownOption>}
+            {options.indexOf('right') >= 0 &&
+              <DropdownOption
+                value="right"
+                active={textAlignment === 'right'}
+                className={classNames('boldr-editor__text-align-dropdownOption', right.className)}
+                title={right.title}
+              >
+                <Icon kind="align-right" color="#222" />
+              </DropdownOption>}
+            {options.indexOf('justify') >= 0 &&
+              <DropdownOption
+                value="justify"
+                active={textAlignment === 'justify'}
+                className={classNames('boldr-editor__text-align-dropdownOption', justify.className)}
+                title={justify.title}
+              >
+                <Icon kind="justify" color="#222" />
+              </DropdownOption>}
+          </Dropdown>
+        );
   }
 
   render(): Object {

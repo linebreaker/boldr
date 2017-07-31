@@ -34,7 +34,7 @@ export default function buildWebpackDlls() {
       // We only use this for development, so lets always include source maps.
       devtool: 'inline-source-map',
       entry: {
-        ['boldrDLLs']: devDLLDependencies,
+        boldrDLLs: devDLLDependencies,
       },
       output: {
         path: CLIENT_OUTPUT,

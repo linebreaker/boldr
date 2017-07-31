@@ -24,7 +24,7 @@ const generateBreadcrumbs = (acc, topRoutes, location) => {
       });
       generateBreadcrumbs(acc, routes, location);
     }
-    return !!matches;
+    return matches;
   });
   return acc;
 };

@@ -1,101 +1,70 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import shortid from 'shortid';
-// import { Bold, Italic, Underline, Strikethrough, Superscript, Code } from 'boldr-icons';
-import Icon from '@boldr/ui/Icons/Icon';
-import { getFirstIcon } from '../../../utils/common';
+import { Bold, Italic, Underline, Strikethrough, Subscript, Superscript, Code } from 'boldr-icons';
 import Option from '../../Option';
-import { Dropdown, DropdownOption } from '../../Dropdown';
 
 export type Props = {
-  expanded?: boolean,
-  doExpand?: Function,
-  doCollapse?: Function,
-  onExpandEvent?: Function,
-  config?: Object,
   onChange?: Function,
   currentState?: Object,
 };
-/*
-'bold',
-'italic',
-'underline',
-'strikethrough',
-'monospace',
-'superscript',
-'subscript',
- */
-export default class InlineLayout extends Component {
-  props: Props;
-  renderInFlatList(): Object {
-    const { config, currentState, onChange } = this.props;
-    return (
-      <div
-        className={classNames('boldrui-editor__inline-wrapper')}
-        aria-label="boldrui-editor__inline-control"
-      >
-        {config.options.map(style =>
-          <Option
-            key={shortid.generate()}
-            value={style}
-            onClick={onChange}
-            className={classNames(config[style].className)}
-            active={currentState[style] === true || (style === 'MONOSPACE' && currentState.CODE)}
-            title={config[style].title}
-          >
-            <Icon kind={style} color="#222" />
-          </Option>,
-        )}
-      </div>
-    );
-  }
 
-  renderInDropDown(): Object {
-    const {
-      config,
-      expanded,
-      doExpand,
-      onExpandEvent,
-      doCollapse,
-      currentState,
-      onChange,
-    } = this.props;
-    const { className, dropdownClassName, title } = config;
-    return (
-      <Dropdown
-        className={classNames('boldrui-editor__inline-dropdown', className)}
-        optionWrapperClassName={classNames(dropdownClassName)}
-        onChange={onChange}
-        expanded={expanded}
-        doExpand={doExpand}
-        doCollapse={doCollapse}
-        onExpandEvent={onExpandEvent}
-        aria-label="boldrui-editor__inline-control"
-        title={title}
+const InlineLayout = (props: Props) => {
+  const { currentState, onChange } = props;
+  return (
+    <div
+      className={classNames('boldrui-editor__inline-wrapper')}
+      aria-label="boldrui-editor__inline-control"
+    >
+      <Option value="bold" onClick={onChange} active={currentState.bold === true} title="bold">
+        <Bold color="#222" />
+      </Option>
+      <Option
+        value="italic"
+        onClick={onChange}
+        active={currentState.italic === true}
+        title="Italic"
       >
-        <img src={getFirstIcon(config)} alt="" />
-        {config.options.map(style =>
-          <DropdownOption
-            key={shortid.generate()}
-            value={style}
-            className={classNames('boldrui-editor__inline-dropdownoption', config[style].className)}
-            active={currentState[style] === true || (style === 'MONOSPACE' && currentState.CODE)}
-            title={config[style].title}
-          >
-            <img src={config[style].icon} alt="" />
-          </DropdownOption>,
-        )}
-      </Dropdown>
-    );
-  }
+        <Italic color="#222" />
+      </Option>
+      <Option
+        value="underline"
+        onClick={onChange}
+        active={currentState.underline === true}
+        title="Underline"
+      >
+        <Underline color="#222" />
+      </Option>
+      <Option
+        value="strikethrough"
+        onClick={onChange}
+        active={currentState.strikethrough === true}
+        title="Strikethrough"
+      >
+        <Strikethrough color="#222" />
+      </Option>
+      <Option
+        value="superscript"
+        onClick={onChange}
+        active={currentState.superscript === true}
+        title="Superscript"
+      >
+        <Superscript color="#222" />
+      </Option>
+      <Option
+        value="subscript"
+        onClick={onChange}
+        active={currentState.subscript === true}
+        title="Subscript"
+      >
+        <Subscript color="#222" />
+      </Option>
+      <Option value="code" onClick={onChange} active={currentState.CODE} title="Code">
+        <Code color="#222" />
+      </Option>
+    </div>
+  );
+};
 
-  render(): Object {
-    const { config: { inDropdown } } = this.props;
-    if (inDropdown) {
-      return this.renderInDropDown();
-    }
-    return this.renderInFlatList();
-  }
-}
+export default InlineLayout;

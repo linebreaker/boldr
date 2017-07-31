@@ -1,6 +1,6 @@
 {
   "name": "boldr-icons",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0-rc.2",
   "description": "icons for boldr",
   "main": "lib/boldr-icons.commonjs.js",
   "module:modern": "lib/boldr-icons.esmodules.js",

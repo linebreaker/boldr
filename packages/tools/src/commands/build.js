@@ -1,8 +1,8 @@
 import webpack from 'webpack';
 import { remove } from 'fs-extra';
 import { promisify } from 'bluebird';
+import logger from 'boldr-utils/lib/logger';
 import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
-import chalk from 'chalk';
 
 import createWebpackConfig from '../createWebpackConfig';
 
@@ -19,7 +19,7 @@ export function buildClient() {
     webpack(config, (fatalError, stats) => {
       if (fatalError) {
         const fatalMsg = `Fatal error during compiling client: ${fatalError}`;
-        console.log(chalk.red(fatalMsg));
+        logger.error(fatalMsg);
         return reject(fatalMsg);
       }
 
@@ -28,14 +28,15 @@ export function buildClient() {
 
       const isSuccessful = !messages.errors.length && !messages.warnings.length;
       if (isSuccessful) {
-        console.log(chalk.green('Compiled client successfully!'));
+        logger.end('Compiled client successfully!');
       }
 
       // If errors exist, only show errors.
       if (messages.errors.length) {
-        console.log(chalk.red('Failed to compile client!\n'));
-        console.log(messages.errors.join('\n\n'));
-        return reject('Failed to compile client!');
+        logger.error('Failed to compile client!\n');
+        logger.error(messages.errors.join('\n\n'));
+        const err = new Error('Failed to compile client!');
+        return reject(err);
       }
 
       return resolve(true);
@@ -54,7 +55,7 @@ export function buildServer() {
     webpack(config, (fatalError, stats) => {
       if (fatalError) {
         const fatalMsg = `Fatal error during compiling server: ${fatalError}`;
-        console.log(chalk.red(fatalMsg));
+        logger.error(fatalMsg);
         return reject(fatalMsg);
       }
 
@@ -63,14 +64,15 @@ export function buildServer() {
 
       const isSuccessful = !messages.errors.length && !messages.warnings.length;
       if (isSuccessful) {
-        console.log(chalk.green('Compiled server successfully!'));
+        logger.end('Compiled server successfully!');
       }
 
       // If errors exist, only show errors.
       if (messages.errors.length) {
-        console.log(chalk.red('Failed to compile server!\n'));
-        console.log(messages.errors.join('\n\n'));
-        return reject('Failed to compile server!');
+        logger.error('Failed to compile server!\n');
+        logger.error(messages.errors.join('\n\n'));
+        const err = new Error('Failed to compile server!');
+        return reject(err);
       }
 
       return resolve(true);

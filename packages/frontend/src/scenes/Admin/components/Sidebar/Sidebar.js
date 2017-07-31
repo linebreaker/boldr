@@ -17,27 +17,20 @@ export type SidebarLink = {
 export type SidebarLinks = Array<SidebarLink>;
 
 export type Props = {
-  className: ?string,
   navClassName: ?string,
   items: SidebarLinks,
   location: Object,
-  linkComponent: ReactElement,
-  chevronComponent: ReactElement,
-  iconComponent: ReactElement,
   isPrimaryColor: ?boolean,
   activeItem: ?string,
   // sidebar is hidden or visible? default visible
   visible: boolean,
   // expand or collapse menu item?
   expanded: boolean,
-  onVisibilityChange: () => void,
   onExpandCollapse: () => void,
   // url for the logo image
   logoImg: string,
   // Where should the logo link to? Default is /
   logoLink: string,
-  // light or dark themed sidebar
-  sidebarDark: boolean,
 };
 
 class Sidebar extends Component {

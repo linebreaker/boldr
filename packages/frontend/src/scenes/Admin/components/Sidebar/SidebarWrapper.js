@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 type Props = {
   children: ReactChildren,
-  sidebarDark: boolean,
-  fullWidth: boolean,
 };
 
 const SidebarWrapper = (props: Props) => {

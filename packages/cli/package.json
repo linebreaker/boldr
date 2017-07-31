@@ -1,7 +1,7 @@
 {
   "name": "cli",
   "version": "0.1.0-beta.5",
-  "description": "",
+  "description": "Command line tools for Boldr apps",
   "main": "index.js",
   "bin": {
     "boldr": "./bin/boldr.js"
@@ -10,12 +10,15 @@
     "bin"
   ],
   "scripts": {
-    "build": "rm -rf ./bin && NODE_ENV=production babel src/cli.js --source-maps -o boldr.js",
+    "build": "rm -rf ./bin && NODE_ENV=production babel src/cli.js --source-maps -o boldr.js && mkdir bin && mv boldr.js boldr.js.map bin/ ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "boldr"
+  ],
+  "author": "Steven Truesdell <steven@strues.io>",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.0",

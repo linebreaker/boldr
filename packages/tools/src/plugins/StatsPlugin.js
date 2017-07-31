@@ -1,4 +1,6 @@
 import merge from 'lodash.merge';
+// Credit to https://github.com/unindented/stats-webpack-plugin
+// outdated peer-deps result in copy-pasta
 
 /**
  * Create a new StatsPlugin that causes webpack to generate a stats file as
@@ -28,7 +30,6 @@ StatsPlugin.prototype.apply = function apply(compiler) {
       },
       source: function getSource() {
         const stats = compilation.getStats().toJson(options);
-        let result;
 
         if (cache) {
           cache = merge(cache, stats);

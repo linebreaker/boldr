@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { fontSizes, toggleCustomInlineStyle, getSelectionCustomInlineStyle } from 'draftjs-utils';
+import { toggleCustomInlineStyle, getSelectionCustomInlineStyle } from 'draftjs-utils';
 
 import FontSizeLayout from './FontSizeLayout';
 
@@ -92,7 +92,7 @@ export default class FontSize extends Component {
 
   render(): Object {
     const { config } = this.props;
-    const { undoDisabled, redoDisabled, expanded, currentFontSize } = this.state;
+    const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || FontSizeLayout;
     const fontSize = currentFontSize && Number(currentFontSize.substring(9));
     return (

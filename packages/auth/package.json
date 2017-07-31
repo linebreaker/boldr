@@ -1,7 +1,7 @@
 {
   "name": "boldr-auth",
   "version": "0.0.1-alpha.1",
-  "description": "",
+  "description": "JWT and localStorage mock for Boldr frontend.",
   "main": "lib/boldr-auth.node.commonjs.js",
   "module": "lib/boldr-auth.node.esmodules.js",
   "browser": "lib/boldr-auth.browser.esmodules.js",
@@ -14,9 +14,11 @@
     "prepare": "rimraf lib && rollr",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "jwt"
+  ],
+  "author": "Steven Truesdell <steven@strues.io>",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",

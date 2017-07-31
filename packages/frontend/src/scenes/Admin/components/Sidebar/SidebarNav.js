@@ -11,7 +11,6 @@ const BASE_ELEMENT = StyleClasses.SIDEBAR_NAV;
 export type Props = {
   navClassName: ?string,
   items: SidebarLinks,
-  isPrimaryColor: ?boolean,
   activeItem: ?string,
   location: Object,
   expanded: boolean,
@@ -77,7 +76,7 @@ class SidebarNav extends Component {
   render() {
     const { navClassName } = this.props;
     const classes = classnames(BASE_ELEMENT, {
-      'boldr-theme': !this.props.navClassName,
+      'boldr-theme': !navClassName,
     });
     return (
       <div className={classes}>

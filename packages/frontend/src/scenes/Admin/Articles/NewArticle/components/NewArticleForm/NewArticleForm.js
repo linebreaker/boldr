@@ -100,7 +100,7 @@ class NewArticleForm extends Component {
                 <Block>
                   <FormGroup>
                     <FormField isGrouped>
-                      <Label>Publishing status</Label>
+                      <Label>Article status:</Label>
                       <Field
                         name="published"
                         type="radio"

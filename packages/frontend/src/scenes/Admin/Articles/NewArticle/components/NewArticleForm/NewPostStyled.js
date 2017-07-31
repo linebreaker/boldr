@@ -23,7 +23,7 @@ const Toolbar = styled.div`
 
 const DarkSegment = styled.div`
   margin-bottom: 1.5rem;
-  padding: 1.5rem;
+  padding: 1rem;
   background: #2e363d;
   border-radius: 3px;
   box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);

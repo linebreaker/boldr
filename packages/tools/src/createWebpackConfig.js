@@ -109,7 +109,7 @@ export default function createWebpackConfig(
 ): Promise<Configuration> {
   const config = { ...defaults, ...options };
   // process.env.NODE_ENV is typically set but still could be undefined. Fix that.
-  if (config.env == null) {
+  if (config.env === null) {
     config.env = 'development';
   }
   const platform = config.target === 'node' ? 'server' : 'browser';
@@ -173,8 +173,7 @@ export default function createWebpackConfig(
   logger.info(`→ Environment: ${config.env}`);
   logger.info(`→ Build Target: ${target}`);
   logger.info(`→ Babel Environment: ${BABEL_ENV}`);
-  logger.log(`→ Enable Source Maps: ${devtool}`);
-  logger.log(`→ Bundle Compression: ${config.minifier}`);
+  logger.log(`→ Source Maps: ${devtool}`);
 
   const cacheLoader = config.useCacheLoader
     ? {
@@ -200,12 +199,11 @@ export default function createWebpackConfig(
     },
   };
   const sassLoaderRule = {
-    loader: require.resolve('better-sass-loader'),
+    loader: require.resolve('sass-loader'),
   };
   const getClientEntry = () => {
     // For development
     let entry = [
-      require.resolve('react-hot-loader/patch'),
       `${require.resolve(
         'webpack-hot-middleware/client',
       )}?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false`,
@@ -232,7 +230,7 @@ export default function createWebpackConfig(
     devtool,
     context: ROOT,
     bail: !_IS_DEV_,
-    externals: _IS_SERVER_ ? serverExternals : undefined,
+    externals: _IS_SERVER_ ? serverExternals : null,
     node: {
       console: true,
       __filename: true,
@@ -360,6 +358,7 @@ export default function createWebpackConfig(
         debug: !_IS_PROD_,
         context: ROOT,
       }),
+      // eslint-disable-next-line
       HappyPackPlugin({
         name: 'hp-js',
         loaders: [

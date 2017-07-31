@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
-
+import shortid from 'shortid';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 
 export type Props = {
@@ -26,11 +26,16 @@ export default class FontSizeLayout extends Component {
       const styles = window.getComputedStyle(editorElm[0]);
       let defaultFontSize = styles.getPropertyValue('font-size');
       defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
-      this.setState({
-        defaultFontSize,
-      });
+      this.setDefaultFontSize(defaultFontSize);
     }
   }
+
+  setDefaultFontSize = defaultFontSize => {
+    this.setState({
+      defaultFontSize,
+    });
+  };
+
   props: Props;
   render() {
     const {
@@ -63,12 +68,12 @@ export default class FontSizeLayout extends Component {
                 {currentFontSize}
               </span>
             : <img src={icon} alt="" />}
-          {options.map((size, index) =>
+          {options.map(size =>
             <DropdownOption
               className="boldrui-editor__fontsize-option"
               active={currentFontSize === size}
               value={size}
-              key={index}
+              key={shortid.generate()}
             >
               {size}
             </DropdownOption>,

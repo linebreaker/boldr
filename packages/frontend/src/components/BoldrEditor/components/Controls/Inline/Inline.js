@@ -11,7 +11,6 @@ export type Props = {
   onChange: Function,
   editorState: Object,
   modalHandler?: Object,
-  config?: Object,
 };
 export default class Inline extends Component {
   state: Object = {
@@ -41,6 +40,7 @@ export default class Inline extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
   props: Props;
+  // eslint-disable-next-line
   changeKeys = style => {
     if (style) {
       const st = {};
@@ -93,19 +93,7 @@ export default class Inline extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
-    const { expanded, currentStyles } = this.state;
-    const InlineComponent = config.component || InlineLayout;
-    return (
-      <InlineComponent
-        config={config}
-        currentState={currentStyles}
-        expanded={expanded}
-        onExpandEvent={this.onExpandEvent}
-        doExpand={this.doExpand}
-        doCollapse={this.doCollapse}
-        onChange={this.toggleInlineStyle}
-      />
-    );
+    const { currentStyles } = this.state;
+    return <InlineLayout currentState={currentStyles} onChange={this.toggleInlineStyle} />;
   }
 }
