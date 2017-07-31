@@ -1,5 +1,0 @@
-{
-  "presets": [
-    [ "boldr", { "target": "library" }]
-  ]
-}

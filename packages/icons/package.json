@@ -1,6 +1,6 @@
 {
-  "name": "boldr-icons",
-  "version": "0.1.0-rc.2",
+  "name": "@boldr/icons",
+  "version": "0.1.0-alpha.1",
   "description": "icons for boldr",
   "main": "lib/boldr-icons.commonjs.js",
   "module:modern": "lib/boldr-icons.esmodules.js",
@@ -23,10 +23,19 @@
     "email": "steven@strues.io",
     "url": "strues.io"
   },
+  "homepage": "https://github.com/strues/boldr#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strues/boldr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strues/boldr/issues"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.10",
-    "react": "^15.3.0 || ^16.0.0-beta.1",
-    "react-dom": "^15.3.0 || ^16.0.0-beta.1"
+    "react": "^15.3.0 || ^16.0.0-beta.2",
+    "react-dom": "^15.3.0 || ^16.0.0-beta.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

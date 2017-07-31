@@ -1,15 +1,33 @@
 {
   "name": "boldr-server",
   "version": "0.0.1-alpha.1",
-  "description": "",
+  "description": "Server for Boldr",
   "main": "index.js",
   "scripts": {
     "dev": "babel-watch src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "graphql",
+    "apollo",
+    "express",
+    "objection",
+    "node"
+  ],
+  "author": {
+    "name": "Steven Truesdell",
+    "email": "steven@strues.io",
+    "url": "strues.io"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/strues/boldr#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strues/boldr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strues/boldr/issues"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.0",

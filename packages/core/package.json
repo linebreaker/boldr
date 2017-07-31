@@ -1,13 +1,17 @@
 {
-  "name": "boldr-core",
-  "version": "0.0.1-alpha.2",
+  "name": "@boldr/core",
+  "version": "0.1.0-alpha.1",
   "description": "universal react content management framework",
   "homepage": "https://github.com/strues/boldr",
   "bugs": {
     "url": "https://github.com/strues/boldr/issues"
   },
   "license": "MIT",
-  "author": "Steven Truesdell <steven@strues.io>",
+  "author": {
+    "name": "Steven Truesdell",
+    "email": "steven@strues.io",
+    "url": "strues.io"
+  },
   "main": "lib/boldr-core.node.commonjs.js",
   "module": "lib/boldr-core.node.esmodules.js",
   "browser": "lib/boldr-core.browser.esmodules.js",

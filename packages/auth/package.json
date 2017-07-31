@@ -1,6 +1,6 @@
 {
-  "name": "boldr-auth",
-  "version": "0.0.1-alpha.1",
+  "name": "@boldr/auth",
+  "version": "0.1.0-alpha.1",
   "description": "JWT and localStorage mock for Boldr frontend.",
   "main": "lib/boldr-auth.node.commonjs.js",
   "module": "lib/boldr-auth.node.esmodules.js",
@@ -8,17 +8,30 @@
   "files": [
     "lib"
   ],
+  "keywords": [
+    "jwt"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Steven Truesdell",
+    "email": "steven@strues.io",
+    "url": "strues.io"
+  },
+  "homepage": "https://github.com/strues/boldr#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strues/boldr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strues/boldr/issues"
+  },
   "scripts": {
     "clean": "rimraf lib",
     "format": "prettier --single-quote=true --jsx-bracket-same-line=false --trailing-comma=all --print-width=100 --write \"src/**/*.js\"",
     "prepare": "rimraf lib && rollr",
     "test": "jest"
   },
-  "keywords": [
-    "jwt"
-  ],
-  "author": "Steven Truesdell <steven@strues.io>",
-  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",
